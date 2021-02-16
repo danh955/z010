@@ -1,0 +1,3 @@
+﻿# Entities
+
+Persistent database entities.

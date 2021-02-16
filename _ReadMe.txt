@@ -9,3 +9,5 @@ https://wkrzywiec.medium.com/ports-adapters-architecture-on-example-19cab9e93be7
 
 Is the repository pattern useful with Entity Framework Core?
 https://www.thereformedprogrammer.net/is-the-repository-pattern-useful-with-entity-framework-core
+https://github.com/kgrzybek/sample-dotnet-core-cqrs-api
+https://medium.com/software-alchemy/a-template-for-clean-domain-driven-design-architecture-e386ad235f32

@@ -13,15 +13,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp", "ConsoleApp\ConsoleApp.csproj", "{9C656C77-549E-49AD-9CA9-62F656829B0D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App.Application", "App.Application\App.Application.csproj", "{D2040932-A3D1-4CF3-98AF-9644E06F5B22}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Application", "App.Application\App.Application.csproj", "{D2040932-A3D1-4CF3-98AF-9644E06F5B22}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App.Domain", "App.Domain\App.Domain.csproj", "{E673B296-A51E-429A-B877-389C655A83F5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Domain", "App.Domain\App.Domain.csproj", "{E673B296-A51E-429A-B877-389C655A83F5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App.Infrastructure", "App.Infrastructure\App.Infrastructure.csproj", "{8431A29F-674C-497D-A84C-0DA5AE606B73}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.Infrastructure", "App.Infrastructure\App.Infrastructure.csproj", "{8431A29F-674C-497D-A84C-0DA5AE606B73}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App.InfrastructureTest", "App.InfrastructureTest\App.InfrastructureTest.csproj", "{254428AD-7A94-40BB-88EA-CE933BFE328A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.InfrastructureTest", "App.InfrastructureTest\App.InfrastructureTest.csproj", "{254428AD-7A94-40BB-88EA-CE933BFE328A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "App.ApplicationTest", "App.ApplicationTest\App.ApplicationTest.csproj", "{87DB9385-436E-4F1D-B64A-6020A521E82C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "App.ApplicationTest", "App.ApplicationTest\App.ApplicationTest.csproj", "{87DB9385-436E-4F1D-B64A-6020A521E82C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -2,7 +2,7 @@
 // Free and open source code.
 // </copyright>
 
-namespace App.Infrastructure.GetAllNasdaqAndOtherSymbols
+namespace App.Infrastructure.Dtos
 {
     /// <summary>
     /// Other symbols (not NASDAQ) class.

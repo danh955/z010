@@ -1,12 +1,12 @@
-﻿// <copyright file="Stock.cs" company="None">
+﻿// <copyright file="StockEntity.cs" company="None">
 // Free and open source code.
 // </copyright>
-namespace App.Domain.Stocks
+namespace App.Domain.Entities
 {
     /// <summary>
     /// Stock class.
     /// </summary>
-    public class Stock
+    public class StockEntity
     {
         /// <summary>
         /// Gets or sets the stock ID.

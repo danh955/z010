@@ -2,11 +2,14 @@
 // Free and open source code.
 // </copyright>
 
-namespace App.ApplicationTest
+namespace App.ApplicationTest.Stocks
 {
     using System.Threading;
     using System.Threading.Tasks;
     using App.Application.Stocks.StockSymbolUpdater;
+    using App.Infrastructure;
+    using MediatR;
+    using Moq;
     using Xunit;
 
     /// <summary>
@@ -19,11 +22,13 @@ namespace App.ApplicationTest
         /// </summary>
         /// <returns>Task.</returns>
         [Fact]
-        public async Task HandlerTest()
+        public async Task StockSymbolUpdaterCommandHandlerTest()
         {
-            //// TODO: Naming is bad.
-            var command = new StockSymbolUpdaterCommand();
-            var handler = new StockSymbolUpdaterCommandHandler();
+            var mediatorMock = new Mock<IMediator>();
+            mediatorMock.Setup(x => x.Send(It.IsAny<GetAllSymbolsNasdaq.Query>(), It.IsAny<CancellationToken>())).ReturnsAsync(new GetAllSymbolsNasdaq.Result());
+
+            var command = new StockSymbolUpdater.Command();
+            var handler = new StockSymbolUpdater.Handler(mediatorMock.Object);
             await handler.Handle(command, CancellationToken.None);
         }
     }

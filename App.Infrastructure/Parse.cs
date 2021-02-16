@@ -1,7 +1,7 @@
 ﻿// <copyright file="Parse.cs" company="None">
 // Free and open source code.
 // </copyright>
-namespace App.Infrastructure.GetAllNasdaqAndOtherSymbols
+namespace App.Infrastructure
 {
     using System;
 

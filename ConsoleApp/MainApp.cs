@@ -3,6 +3,7 @@
     using System;
     using System.Threading.Tasks;
     using App.Application;
+    using App.Application.Stocks.StockSymbolUpdater;
     using MediatR;
 
     internal class MainApp
@@ -17,7 +18,9 @@
         public async Task Start()
         {
             var nothingResult = await this.mediator.Send(new GetNothing.Query() { Id = 321 });
-            Console.WriteLine(nothingResult);
+            Console.WriteLine(nothingResult.Message);
+
+            await this.mediator.Send(new StockSymbolUpdater.Command());
         }
     }
 }

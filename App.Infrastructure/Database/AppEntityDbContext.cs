@@ -1,21 +1,21 @@
-﻿// <copyright file="AppDbContext.cs" company="None">
+﻿// <copyright file="AppEntityDbContext.cs" company="None">
 // Free and open source code.
 // </copyright>
 namespace App.Infrastructure.Database
 {
-    using App.Domain.Stocks;
+    using App.Domain.Entities;
     using Microsoft.EntityFrameworkCore;
 
     /// <summary>
     /// Application database context class.
     /// </summary>
-    public class AppDbContext : DbContext
+    public class AppEntityDbContext : DbContext
     {
         /// <summary>
-        /// Initializes a new instance of the <see cref="AppDbContext"/> class.
+        /// Initializes a new instance of the <see cref="AppEntityDbContext"/> class.
         /// </summary>
         /// <param name="options">DbContextOptions.</param>
-        public AppDbContext(DbContextOptions<AppDbContext> options)
+        public AppEntityDbContext(DbContextOptions<AppEntityDbContext> options)
             : base(options)
         {
         }
@@ -23,12 +23,12 @@ namespace App.Infrastructure.Database
         /// <summary>
         /// Gets or sets the stock database entity.
         /// </summary>
-        public DbSet<Stock> Stocks { get; set; }
+        public DbSet<StockEntity> Stocks { get; set; }
 
         /// <inheritdoc/>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppEntityDbContext).Assembly);
         }
     }
 }

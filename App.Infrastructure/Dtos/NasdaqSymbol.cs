@@ -1,7 +1,7 @@
 ﻿// <copyright file="NasdaqSymbol.cs" company="None">
 // Free and open source code.
 // </copyright>
-namespace App.Infrastructure.GetAllNasdaqAndOtherSymbols
+namespace App.Infrastructure.Dtos
 {
     /// <summary>
     /// NASDAQ Symbol class.

@@ -3,7 +3,7 @@
 // </copyright>
 namespace App.Infrastructure.Database.Stocks
 {
-    using App.Domain.Stocks;
+    using App.Domain.Entities;
     using App.Infrastructure.Database;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.EntityFrameworkCore.Metadata.Builders;
@@ -11,10 +11,10 @@ namespace App.Infrastructure.Database.Stocks
     /// <summary>
     /// Stock entity type configuration class.
     /// </summary>
-    internal class StockEntityTypeConfiguration : IEntityTypeConfiguration<Stock>
+    internal class StockEntityTypeConfiguration : IEntityTypeConfiguration<StockEntity>
     {
         /// <inheritdoc/>
-        public void Configure(EntityTypeBuilder<Stock> builder)
+        public void Configure(EntityTypeBuilder<StockEntity> builder)
         {
             builder.ToTable("Stocks", SchemaNames.Stocks);
             builder.HasKey(s => s.Id);

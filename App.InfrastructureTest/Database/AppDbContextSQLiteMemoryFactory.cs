@@ -1,7 +1,7 @@
 ﻿// <copyright file="AppDbContextSQLiteMemoryFactory.cs" company="None">
 // Free and open source code.
 // </copyright>
-namespace App.InfrastructureTest
+namespace App.InfrastructureTest.Database
 {
     using System;
     using System.Data.Common;
@@ -21,7 +21,7 @@ namespace App.InfrastructureTest
         /// Create a database context where the database is held in memory.
         /// </summary>
         /// <returns>AppDbContext.</returns>
-        public AppDbContext CreateContext()
+        public AppEntityDbContext CreateContext()
         {
             if (this.connection == null)
             {
@@ -29,11 +29,11 @@ namespace App.InfrastructureTest
                 this.connection.Open();
 
                 var options = this.CreateOptions();
-                using var context = new AppDbContext(options);
+                using var context = new AppEntityDbContext(options);
                 context.Database.EnsureCreated();
             }
 
-            return new AppDbContext(this.CreateOptions());
+            return new AppEntityDbContext(this.CreateOptions());
         }
 
         /// <inheritdoc/>
@@ -47,9 +47,9 @@ namespace App.InfrastructureTest
             }
         }
 
-        private DbContextOptions<AppDbContext> CreateOptions()
+        private DbContextOptions<AppEntityDbContext> CreateOptions()
         {
-            return new DbContextOptionsBuilder<AppDbContext>()
+            return new DbContextOptionsBuilder<AppEntityDbContext>()
                 .UseSqlite(this.connection).Options;
         }
     }

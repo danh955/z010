@@ -1,7 +1,7 @@
-﻿// <copyright file="Handler.cs" company="None">
+﻿// <copyright file="GetAllSymbolsNasdaqHandler.cs" company="None">
 // Free and open source code.
 // </copyright>
-namespace App.Infrastructure.GetAllNasdaqAndOtherSymbols
+namespace App.Infrastructure.Handlers
 {
     using System;
     using System.Collections.Generic;
@@ -10,13 +10,15 @@ namespace App.Infrastructure.GetAllNasdaqAndOtherSymbols
     using System.Net.Http;
     using System.Threading;
     using System.Threading.Tasks;
+    using App.Infrastructure.Dtos;
     using CsvHelper;
     using CsvHelper.Configuration;
+    using MediatR;
 
     /// <summary>
     /// The handler that process the get all NASDAQ symbols class.
     /// </summary>
-    public class Handler
+    public class GetAllSymbolsNasdaqHandler : IRequestHandler<GetAllSymbolsNasdaq.Query, GetAllSymbolsNasdaq.Result>
     {
         private const string FileCreationTimeText = @"File Creation Time:";
         private const string NasdaqListedUri = @"http://www.nasdaqtrader.com/dynamic/SymDir/nasdaqlisted.txt";
@@ -30,10 +32,10 @@ namespace App.Infrastructure.GetAllNasdaqAndOtherSymbols
         private readonly IHttpClientFactory clientFactory;
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="Handler"/> class.
+        /// Initializes a new instance of the <see cref="GetAllSymbolsNasdaqHandler"/> class.
         /// </summary>
         /// <param name="clientFactory">IHttpClientFactory.</param>
-        public Handler(IHttpClientFactory clientFactory)
+        public GetAllSymbolsNasdaqHandler(IHttpClientFactory clientFactory)
         {
             this.clientFactory = clientFactory;
         }
@@ -44,7 +46,7 @@ namespace App.Infrastructure.GetAllNasdaqAndOtherSymbols
         /// <param name="request">The query.</param>
         /// <param name="cancellationToken">Cancellation token.</param>
         /// <returns>String.</returns>
-        public async Task<Result> Handle(Query request, CancellationToken cancellationToken)
+        public async Task<GetAllSymbolsNasdaq.Result> Handle(GetAllSymbolsNasdaq.Query request, CancellationToken cancellationToken)
         {
             var nasdaqSymbolTask = this.GetItemsAsync<NasdaqSymbol>(
                 uri: NasdaqListedUri,
@@ -86,7 +88,7 @@ namespace App.Infrastructure.GetAllNasdaqAndOtherSymbols
 
             await Task.WhenAll(nasdaqSymbolTask, otherSymbolTask);
 
-            return new Result
+            return new GetAllSymbolsNasdaq.Result
             {
                 NasdaqSymbols = nasdaqSymbolTask.Result.Item1,
                 NasdaqSymbolsFileCreationTime = nasdaqSymbolTask.Result.Item2,

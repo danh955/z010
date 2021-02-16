@@ -14,7 +14,7 @@
                 .ConfigureServices((hostContext, services) =>
                 {
                     services.AddAppApplication();
-                    services.AddAppInfrastructure();
+                    services.AddAppInfrastructure("DataSource=:memory:");
                     services.AddHttpClient();
                     services.AddTransient<MainApp>();
                 }).UseConsoleLifetime();
