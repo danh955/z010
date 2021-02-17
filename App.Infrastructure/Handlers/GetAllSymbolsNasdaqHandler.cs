@@ -54,17 +54,15 @@ namespace App.Infrastructure.Handlers
                 cancellationToken: cancellationToken,
                 createItem: (csv) =>
                 {
-                    return new NasdaqSymbol
-                    {
-                        Symbol = csv[0].Trim(),
-                        SecurityName = csv[1].Trim(),
-                        MarketCategory = csv.GetField<char>(2),
-                        TestIssue = Parse.Boolean(csv[3]),
-                        FinancialStatus = csv.GetField<char>(4),
-                        RoundLotSize = csv.GetField<int>(5),
-                        ETF = Parse.Boolean(csv[6]),
-                        NextShares = Parse.Boolean(csv[7]),
-                    };
+                    return new NasdaqSymbol(
+                        symbol: csv[0].Trim(),
+                        securityName: csv[1].Trim(),
+                        marketCategory: csv.GetField<char>(2),
+                        testIssue: Parse.Boolean(csv[3]),
+                        financialStatus: csv.GetField<char>(4),
+                        roundLotSize: csv.GetField<int>(5),
+                        etf: Parse.Boolean(csv[6]),
+                        nextShares: Parse.Boolean(csv[7]));
                 });
 
             var otherSymbolTask = this.GetItemsAsync<OtherSymbol>(
@@ -73,28 +71,24 @@ namespace App.Infrastructure.Handlers
                 cancellationToken: cancellationToken,
                 createItem: (csv) =>
                 {
-                    return new OtherSymbol
-                    {
-                        ActSymbol = csv[0].Trim(),
-                        SecurityName = csv[1].Trim(),
-                        Exchange = csv.GetField<char>(2),
-                        CqsSymbol = csv[3].Trim(),
-                        ETF = Parse.Boolean(csv[4]),
-                        RoundLotSize = csv.GetField<int>(5),
-                        TestIssue = Parse.Boolean(csv[6]),
-                        NASDAQSymbol = csv[7].Trim(),
-                    };
+                    return new OtherSymbol(
+                        actSymbol: csv[0].Trim(),
+                        securityName: csv[1].Trim(),
+                        exchange: csv.GetField<char>(2),
+                        cqsSymbol: csv[3].Trim(),
+                        etf: Parse.Boolean(csv[4]),
+                        roundLotSize: csv.GetField<int>(5),
+                        testIssue: Parse.Boolean(csv[6]),
+                        nasdaqSymbol: csv[7].Trim());
                 });
 
             await Task.WhenAll(nasdaqSymbolTask, otherSymbolTask);
 
-            return new GetAllSymbolsNasdaq.Result
-            {
-                NasdaqSymbols = nasdaqSymbolTask.Result.Item1,
-                NasdaqSymbolsFileCreationTime = nasdaqSymbolTask.Result.Item2,
-                OtherSymbols = otherSymbolTask.Result.Item1,
-                OtherSymbolsFileCreationTime = otherSymbolTask.Result.Item2,
-            };
+            return new GetAllSymbolsNasdaq.Result(
+                nasdaqSymbols: nasdaqSymbolTask.Result.Item1,
+                nasdaqSymbolsFileCreationTime: nasdaqSymbolTask.Result.Item2,
+                otherSymbols: otherSymbolTask.Result.Item1,
+                otherSymbolsFileCreationTime: otherSymbolTask.Result.Item2);
         }
 
         /// <summary>

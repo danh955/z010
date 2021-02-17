@@ -26,24 +26,39 @@ namespace App.Infrastructure
         public class Result
         {
             /// <summary>
+            /// Initializes a new instance of the <see cref="Result"/> class.
+            /// </summary>
+            /// <param name="nasdaqSymbols">List of NASDAQ symbols.</param>
+            /// <param name="nasdaqSymbolsFileCreationTime">NASDAQ symbols file creation time.</param>
+            /// <param name="otherSymbols">List of other symbols.</param>
+            /// <param name="otherSymbolsFileCreationTime">Other symbols file creation time.</param>
+            public Result(IEnumerable<NasdaqSymbol> nasdaqSymbols, DateTime nasdaqSymbolsFileCreationTime, IEnumerable<OtherSymbol> otherSymbols, DateTime otherSymbolsFileCreationTime)
+            {
+                this.NasdaqSymbols = nasdaqSymbols;
+                this.NasdaqSymbolsFileCreationTime = nasdaqSymbolsFileCreationTime;
+                this.OtherSymbols = otherSymbols;
+                this.OtherSymbolsFileCreationTime = otherSymbolsFileCreationTime;
+            }
+
+            /// <summary>
             /// Gets list of items.
             /// </summary>
-            public IEnumerable<NasdaqSymbol> NasdaqSymbols { get; internal set; }
+            public IEnumerable<NasdaqSymbol> NasdaqSymbols { get; private set; }
 
             /// <summary>
             /// Gets NASDAQ symbols file creation time.
             /// </summary>
-            public DateTime NasdaqSymbolsFileCreationTime { get; internal set; }
+            public DateTime NasdaqSymbolsFileCreationTime { get; private set; }
 
             /// <summary>
             /// Gets list of items.
             /// </summary>
-            public IEnumerable<OtherSymbol> OtherSymbols { get; internal set; }
+            public IEnumerable<OtherSymbol> OtherSymbols { get; private set; }
 
             /// <summary>
             /// Gets NASDAQ symbols file creation time.
             /// </summary>
-            public DateTime OtherSymbolsFileCreationTime { get; internal set; }
+            public DateTime OtherSymbolsFileCreationTime { get; private set; }
         }
     }
 }

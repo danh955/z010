@@ -1,4 +1,4 @@
-﻿// <copyright file="DatabaseTest.cs" company="None">
+﻿// <copyright file="AppEntityDbContextText.cs" company="None">
 // Free and open source code.
 // </copyright>
 namespace App.InfrastructureTest.Database
@@ -6,12 +6,13 @@ namespace App.InfrastructureTest.Database
     using System.Linq;
     using App.Domain.Entities;
     using App.Infrastructure.Database;
+    using App.TestCommon;
     using Xunit;
 
     /// <summary>
     /// Database test class.
     /// </summary>
-    public class DatabaseTest
+    public class AppEntityDbContextText
     {
         /// <summary>
         /// Stock add test.
@@ -19,8 +20,8 @@ namespace App.InfrastructureTest.Database
         [Fact]
         public void StockAddTest()
         {
-            using var factory = new AppDbContextSQLiteMemoryFactory();
-            using AppEntityDbContext db = factory.CreateContext();
+            using var contextFactory = new InMemoryDbContextFactory();
+            using AppEntityDbContext db = contextFactory.CreateDbContext();
 
             db.Stocks.Add(new StockEntity() { Symbol = "test", Name = "Testing" });
             db.SaveChanges();

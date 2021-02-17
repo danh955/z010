@@ -1,7 +1,7 @@
-﻿// <copyright file="AppDbContextSQLiteMemoryFactory.cs" company="None">
+﻿// <copyright file="InMemoryDbContextFactory.cs" company="None">
 // Free and open source code.
 // </copyright>
-namespace App.InfrastructureTest.Database
+namespace App.TestCommon
 {
     using System;
     using System.Data.Common;
@@ -10,27 +10,25 @@ namespace App.InfrastructureTest.Database
     using Microsoft.EntityFrameworkCore;
 
     /// <summary>
-    /// Application database context SQLite memory factory class.
+    /// In memory database context factory class.
     /// From: https://www.meziantou.net/testing-ef-core-in-memory-using-sqlite.htm.
     /// </summary>
-    public class AppDbContextSQLiteMemoryFactory : IDisposable
+    public class InMemoryDbContextFactory : IDbContextFactory<AppEntityDbContext>, IDisposable
     {
         private DbConnection connection;
 
-        /// <summary>
-        /// Create a database context where the database is held in memory.
-        /// </summary>
-        /// <returns>AppDbContext.</returns>
-        public AppEntityDbContext CreateContext()
+        /// <inheritdoc/>
+        public AppEntityDbContext CreateDbContext()
         {
             if (this.connection == null)
             {
                 this.connection = new SqliteConnection("DataSource=:memory:");
                 this.connection.Open();
 
-                var options = this.CreateOptions();
-                using var context = new AppEntityDbContext(options);
-                context.Database.EnsureCreated();
+                using (var context = new AppEntityDbContext(this.CreateOptions()))
+                {
+                    context.Database.EnsureCreated();
+                }
             }
 
             return new AppEntityDbContext(this.CreateOptions());
